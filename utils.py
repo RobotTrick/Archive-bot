@@ -1,7 +1,21 @@
+from pony.orm import *
 from pyrogram.types import Message
 from os import listdir
 
+# ========= DB build =========
+db = Database()
 
+
+class User(db.Entity):
+    uid = PrimaryKey(int, auto=True)
+    status = Required(int)  # status-user: "INSERT"/"NOT-INSERT"
+
+
+db.bind(provider='sqlite', filename='zipbot.sqlite', create_db=True)
+db.generate_mapping(create_tables=True)
+
+
+# ========= helping func =========
 def dir_work(uid: int) -> str:
     """ static-user folder """
     return f"static/{uid}/"
@@ -22,12 +36,15 @@ def up_progress(current, total, msg: Message):
     msg.edit(f"**התקדמות ההעלאה: {current * 100 / total:.1f}%**")
 
 
+# ========= MSG class =========
 class Msg:
 
     def start(msg: Message) -> str:
         """ return start-message text """
-        txt = f"היי {msg.from_user.mention}!\n"
-        txt += "באמצעות בוט זה תוכלו לדחוס קבצים לארכיון. שלחו /zip, ופעלו על פי ההוראות."
+        txt = f"[‏](https://github.com/M100achuz2/archive-bot.git)היי {msg.from_user.mention}!\n" \
+              "באמצעות בוט זה תוכלו לדחוס קבצים לארכיון. שלחו /zip, ופעלו על פי ההוראות." \
+              "\n\nרובוט זה נוצר על ידי [Yeuda-By](t.me/m100achuzBots) מצוות [רובוטריק](t.me/robottrick)." \
+              "\nלקוד המקור [לחצו כאן](https://github.com/M100achuz2/archive-bot)."
         return txt
 
     zip = "שלחו את הקבצים שהנכם רוצים לדחוס, ובסיום שלחו /stopzip לאחר שכל הקבצים ירדו. \n`הבוט תומך בקבצים עד 20mb, " \
