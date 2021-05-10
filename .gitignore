@@ -1,0 +1,6 @@
+*.ini
+*.session
+*.sqlite
+static
+venv
+.idea

@@ -1,0 +1,6 @@
+async-lru==1.0.2
+pony==0.7.14
+pyaes==1.6.1
+Pyrogram==1.2.9
+PySocks==1.7.1
+TgCrypto==1.2.2
