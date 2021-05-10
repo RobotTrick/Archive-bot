@@ -1,9 +1,8 @@
 from pyrogram import Client, filters, types
-from bot.utils.db import db_session, User, commit
+from db import db_session, User, commit
 from zipfile import ZipFile
 from os import remove, rmdir, mkdir
-from bot.utils.handler import (zip_work, dir_work, up_progress,
-                               list_dir, Msg, down_progress)
+from handler import zip_work, dir_work, up_progress, list_dir, Msg
 
 
 @Client.on_message(filters.command("start"))
@@ -57,8 +56,7 @@ def enter_files(_, msg: types.Message):
                 msg.reply(Msg.too_much)
             else:
                 downsts = msg.reply(Msg.downloading, True)  # send status-download message
-                msg.download(dir_work(uid), progress=down_progress,
-                             progress_args=(downsts,))
+                msg.download(dir_work(uid))
 
                 downsts.delete()  # delete status-download message
 
@@ -88,7 +86,7 @@ def stop_zip(_, msg: types.Message):
     stsmsg = msg.reply(Msg.zipping.format(len(list_dir(uid))))  # send status-message "ZIPPING" and count files
 
     if not list_dir(uid):  # if len files is zero
-        msg.reply("לא נשלחו קבצים.")
+        msg.reply(Msg.zero_files)
         rmdir(dir_work(uid))
         return
 

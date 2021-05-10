@@ -22,11 +22,6 @@ def up_progress(current, total, msg: Message):
     msg.edit(f"**התקדמות ההעלאה: {current * 100 / total:.1f}%**")
 
 
-def down_progress(current, total, msg: Message):
-    """ edit status-msg with progress of the downloading """
-    msg.edit(f"**התקדמות ההורדה: {current * 100 / total:.1f}%**")
-
-
 class Msg:
 
     def start(msg: Message) -> str:
@@ -45,3 +40,4 @@ class Msg:
     unknow_error = "התרחשה שגיאה לא ידועה. \nשים לב לסדר הפעולות, ניתן להתחיל מחדש על ידי שליחת /start. \nבדוק אם " \
                    "שלחת קבצים לדחיסה, ואם חיכית שכולם ירדו. \nבבקשה שלח זה למפתח:\n ```{}``` "
     downloading = "מוריד קובץ:"
+    zero_files = "לא נשלחו קבצים."
