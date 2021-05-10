@@ -1,4 +1,3 @@
-*.ini
 *.session
 *.sqlite
 static
