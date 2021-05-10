@@ -4,3 +4,4 @@
 static
 venv
 .idea
+*.pyc
