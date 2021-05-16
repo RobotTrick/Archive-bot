@@ -52,3 +52,19 @@ python3 main.py
 <div dir="rtl">
   
 > - רובוט זה נוצר על ידי [Yehuda-By](https://t.me/M100achuzBots)
+
+</div>
+<hr>
+
+### TODO: 
+
+- [ ] upload progress, only with file mor than 100mb. 
+ 
+- [ ] Allow files of up to 50mb to channel subscribers. 
+
+- [ ] zip with password. 
+
+- [ ] extracting files (... even with a password). 
+
+- [ ] Custom name, more than one word. 
+
