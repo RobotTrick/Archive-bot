@@ -36,8 +36,6 @@ def start_zip(_, msg: types.Message):
     except FileExistsError:  # in case the folder already exist
         for file in list_dir(uid):
             remove(dir_work(uid) + file)  # delete all file from folder
-        rmdir(dir_work(uid))  # delete folder
-        mkdir(dir_work(uid))
 
 
 @Client.on_message(filters.media)
@@ -49,11 +47,7 @@ def enter_files(_, msg: types.Message):
         usr = User.get(uid=uid)
         if usr.status == 1:  # check if user-status is "INSERT"
 
-            type = msg.document or msg.video or msg.photo or msg.audio
-
-            if type.file_size > 20000000:
-                msg.reply(Msg.too_big)
-            elif len(list_dir(uid)) > 20:
+            if len(list_dir(uid)) > 20:
                 msg.reply(Msg.too_much)
             else:
                 downsts = msg.reply(Msg.downloading, True)  # send status-download message
