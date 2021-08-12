@@ -36,8 +36,6 @@ def start_zip(_, msg: types.Message):
     except FileExistsError:  # in case the folder already exist
         for file in list_dir(uid):
             remove(dir_work(uid) + file)  # delete all file from folder
-        rmdir(dir_work(uid))  # delete folder
-        mkdir(dir_work(uid))
 
 
 @Client.on_message(filters.media)
